@@ -1,0 +1,57 @@
+<div class="login" fxLayout fxLayoutAlign='center center'>
+  <mat-card class="card">
+    <div class="text">
+      Create Account
+    </div>
+    <div fxLayout='row' fxLayoutAlign='center center'>
+      <label class="hoverable" for="fileInput">
+        <img class="profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+        <div class="hover-text">Choose file</div>
+        <div class="background"></div>
+      </label>
+      <br/>
+      <input id="fileInput" type='file' (change)="onSelectFile($event)">
+      <button *ngIf="url" (click)="delete()" >delete</button>
+    </div>
+    <div [formGroup]="registerForm" fxLayout='row wrap'>
+      <mat-form-field fxFlex=100 appearance="outline">
+        <mat-label>firstName</mat-label>
+        <input formControlName='firstName' matInput placeholder="Placeholder">
+        <mat-error fxFlex
+          *ngIf="!registerForm.controls['firstName'].valid && registerForm.controls['firstName'].touched">
+          {{ getErrorMessage(registerForm.controls['firstName'], 'firstName') }} </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex=100 appearance="outline">
+        <mat-label>lastName</mat-label>
+        <input formControlName='lastName' matInput placeholder="Placeholder">
+        <mat-error fxFlex *ngIf="!registerForm.controls['lastName'].valid && registerForm.controls['lastName'].touched">
+          {{ getErrorMessage(registerForm.controls['lastName'], 'lastName') }} </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex=100 appearance="outline">
+        <mat-label>email</mat-label>
+        <input formControlName='email' matInput placeholder="Placeholder">
+        <mat-error fxFlex *ngIf="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">
+          {{ getErrorMessage(registerForm.controls['email'], 'email') }} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex=100 appearance="outline">
+        <mat-label>password</mat-label>
+        <input formControlName='password' type="password" matInput placeholder="Placeholder">
+        <mat-error fxFlex *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">
+          {{ getErrorMessage(registerForm.controls['password'], 'password') }} </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex=100 appearance="outline">
+        <mat-label>mobile no</mat-label>
+        <input formControlName='mobileNumber' type="number" matInput placeholder="Placeholder">
+        <mat-error fxFlex
+          *ngIf="!registerForm.controls['mobileNumber'].valid && registerForm.controls['mobileNumber'].touched">
+          {{ getErrorMessage(registerForm.controls['mobileNumber'], 'mobileNumber') }} </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout fxLayoutAlign='end center'>
+      <button class="button-click" (click)="register()" mat-flat-button>Register</button>
+
+    </div>
+  </mat-card>
+
+</div>

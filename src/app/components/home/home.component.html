@@ -1,0 +1,41 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <div fxFlex fxLayout='row' fxLayoutAlign='space-between center'>
+      <div fxLayout='row'>
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name">user ManageMent App</h1>
+      </div>
+      <div>
+        <button [matMenuTriggerFor]="menu" class="profile" mat-fab color="primary"
+          aria-label="Example icon button with a delete icon">
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="logout()" mat-menu-item>logout</button>
+        </mat-menu>
+      </div>
+
+    </div>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div fxLayout fxLayoutAlign='center center'>
+        <app-display [noProductCheck]=noProductCheck (messageEvent)="update($event)" [userArray]=userArray fxFlex=80>
+        </app-display>
+
+      </div>
+      <button (click)="addUpdateUser()" class="add-product" mat-fab color="primary" title="add User"
+        aria-label="Example icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

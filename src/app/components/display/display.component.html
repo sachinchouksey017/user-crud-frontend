@@ -1,0 +1,86 @@
+<!-- <div *ngIf='userArray.length > 0' fxLayout='row wrap' fxLayoutAlign='start start' fxLayoutGap=20px>
+  <div *ngFor='let user of userArray' class="card">
+    <div fxLayout='row' fxLayoutAlign='center center'>
+    </div>
+    <div class="name">{{user.firstName}}</div>
+    <div class="name">{{user.lastName}}</div>
+
+    <div class="icon" fxLayout fxLayoutAlign='end center'>
+      <button class="bottom-icon" (click)='editUser(user)' mat-icon-button color="primary"
+        aria-label="Example icon button with a home icon">
+        <mat-icon>edit</mat-icon>
+
+      </button><button (click)='deleteUser(user)' class="bottom-icon" mat-icon-button color="primary"
+        aria-label="Example icon button with a home icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</div> -->
+<div fxLayout fxLayoutAlign='center center' *ngIf='noProductCheck && product.length == 0'>
+  <img src="../../../assets/images/noproduct.png" alt="">
+</div>
+
+<table mat-table [dataSource]="userArray" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef> firstName </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef> lastName </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="mobileNumber">
+    <th mat-header-cell *matHeaderCellDef> mobileNo </th>
+    <td mat-cell *matCellDef="let element"> {{ element.mobileNumber ? element.mobileNumber :'N/A'}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="profileUrl">
+    <th mat-header-cell *matHeaderCellDef> profile </th>
+    <td mat-cell *matCellDef="let element"> 
+      <img *ngIf='!element.profileUrl' class="profile" src="../../../assets/images/default_profile.jpg" alt="">
+      <img *ngIf='element.profileUrl' class="profile" src={{element.profileUrl}} alt="">
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element"> <button class="bottom-icon" (click)='editUser(element)' mat-icon-button
+        color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>edit</mat-icon>
+
+      </button></td>
+
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)='deleteUser(element)' class="bottom-icon" mat-icon-button color="primary"
+        aria-label="Example icon button with a home icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

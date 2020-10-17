@@ -1,0 +1,41 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    width: 240px;
+    margin-top: 20px;
+    border-radius: 8px;
+    min-height: 140px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .name {
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        padding-bottom: 10px;
+    }
+    .price {
+        font-weight: 500;
+        color: #212121;
+    }
+    .bottom-icon {
+        display: none;
+    }
+    .icon {
+        margin-top: 10px;
+    }
+}
+.card:hover {
+    .bottom-icon {
+        display: block;
+    }
+}
+table {
+    width: 100%;
+    margin-top: 59px;
+}
+.profile {
+    width: 90px;
+    border-radius: 50%;
+}
